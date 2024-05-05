@@ -1,21 +1,53 @@
 # BlockSheets
 
-BlockSheets by [Primo Data](https://primodata.org) is a Google Sheets add-on that allows users to fetch cryptocurrency token and NFT price data, as well as project information, directly into their Google Sheets. This add-on is powered by the [CoinMarketCap](https://coinmarketcap.com/api/) and [Coinpaprika](https://api.coinpaprika.com/) APIs.
+BlockSheets is a Google Sheets add-on that allows users to pull blockchain data from [CoinMarketCap](https://coinmarketcap.com/api/), [Coinpaprika](https://api.coinpaprika.com/), and [Allium](https://www.allium.so/) APIs.
 
-## Features
+## Functions
 
-- **Google Sheets Add-on**: BlockSheets is designed to be used as a Google Sheets add-on, making it easy to integrate with your existing workflow.
+The following functions are included:
 
-- **CoinMarketCap API Integration**: BlockSheets uses the CoinMarketCap API to fetch various types of data for a given cryptocurrency symbol. This includes information, price data, and token addresses.
+* `Coinpaprika(tokenId, property)` - The Coinpaprika function integrates real-time cryptocurrency data from the Coinpaprika API into Google Sheets. It allows users to retrieve various properties of cryptocurrencies such as market data, coin specifics, and relevant web links directly into a spreadsheet.
 
-- **Coinpaprika API Integration**: BlockSheets also integrates with the Coinpaprika API to fetch data for a given cryptocurrency ID. This includes ticker data (like name, symbol, rank, price, market cap, and 24h percentage change) and coin data (like description, website, contract, and chain).
+    **Parameters**:
+    * `tokenId` (string): The unique identifier for the cryptocurrency. This is required to fetch the corresponding data from the Coinpaprika API.
+    * `property` (string): The properties are supported:
+        * `Name`: The official name of the cryptocurrency.
+        * `Symbol`: The ticker symbol of the cryptocurrency.
+        * `Rank`: The ranking of the cryptocurrency based on market cap.
+        * `Price ($USD)`: The current price of the cryptocurrency in US Dollars.
+        * `Market Cap`: The total market capitalization in US Dollars.
+        * `% Change (24h)`: The percentage change in price over the last 24 hours.
+        * `Description`: A brief description of the cryptocurrency.
+        * `Website`: The official website URL of the cryptocurrency.
+        * `Token Address`: The contract address of the cryptocurrency on its respective blockchain.
+        * `Chain`: The blockchain platform on which the cryptocurrency operates.
+        * `Listing`: URL to the Coinpaprika page for the cryptocurrency.
+        * `DEX Screener`: URL to a decentralized exchange screener page for the cryptocurrency.
 
 
-## Usage
+* `CoinMarketCap(tokenSymbol, property)` - The CoinMarketCap function is designed to fetch and integrate cryptocurrency data from the CoinMarketCap API directly into Google Sheets. This custom function allows users to retrieve a variety of cryptocurrency properties, such as pricing, market statistics, and metadata, providing dynamic and real-time insights within spreadsheets. _(Note: CoinMarketCap API key is required.)_
 
-To use BlockSheets, you need to have a CoinMarketCap API key and a Coinpaprika API key. These keys should be stored in your Google Sheets as script properties. The add-on will automatically fetch these keys when it runs.
+    **Parameters**
+    * `tokenSymbol` (string): The ticker symbol of the cryptocurrency, used to fetch data specific to that crypto asset.
+    * `property` (string): The following properties are supported:
+        * `Price ($USD)`: Current trading price of the cryptocurrency in US Dollars.
+        * `% Change (24h)`: The percentage change in price over the last 24 hours.
+        * `Rank`: The rank of the cryptocurrency based on its market capitalization.
+        * `Market Cap`: The total market capitalization of the cryptocurrency in US Dollars.
+        * `Name`: The full name of the cryptocurrency.
+        * `Twitter`: URL of the cryptocurrency's official Twitter account.
+        * `Website`: Official website URL of the cryptocurrency.
+        * `Description`: A brief description of the cryptocurrency.
+        * `Listing`: URL to the CoinMarketCap page for the cryptocurrency.
+        * `Chain`: The blockchain platform on which the cryptocurrency is based.
+        * `Token Address`: The contract address of the cryptocurrency on its blockchain.
+        * `DEX Screener`: URL to a decentralized exchange screener page for the cryptocurrency.
 
-You can use the `getCryptoData` function to fetch data from the CoinMarketCap API, and the `TokenData` function to fetch data from the Coinpaprika API. These functions take a cryptocurrency symbol or ID and a metadata type or property as parameters, and return the corresponding data.
+* `Allium(sql)` - The Allium function pulls data from the Allium API, allowing users to fetch blockchain data directly into Google Sheets. (Note: Allium API key is required.)
+
+    **Parameter**
+    * `sql` (string): The SQL query string that is to be executed against the Ethereum blockchain data. The query must be valid SQL syntax as interpreted by the Allium API.
+
 
 ## Installation
 
@@ -23,20 +55,13 @@ To install BlockSheets, follow these steps:
 
 1. Open your Google Sheets document.
 2. Click on "Extensions" in the top menu, then select "Apps Script".
-3. In the Apps Script editor, click on "File" in the top menu, then select "New" > "Project from GitHub".
-4. In the "Add a project from a GitHub URL" dialog, paste the URL of this repository (https://github.com/primodata/BlockSheets).
-5. Click "Add".
-6. In the "Select a repository" dialog, select the "BlockSheets" repository, then click "Select".
-7. In the "Add a project from a GitHub URL" dialog, click "OK".
+3. In the Apps Script editor, copy and paste the code from the `blocksheets.js`.
 
 ## Author
 
 **Primo Data**
 - Website: [primodata.org](https://primodata.org)
-- Email: [max@primodata.org](mailto:max@primodata.org)
 - Twitter: [@Primo_Data](https://twitter.com/Primo_Data)
-- Discord: [@Primo_Data](https://discord.com/users/primo_data)
-- Telegram: [@Primo_Data](https://t.me/primo_data)
 
 ## Contributing
 
